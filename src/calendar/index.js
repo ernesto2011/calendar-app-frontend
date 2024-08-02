@@ -1,1 +1,2 @@
-export * from './pages/CalendarPage.jsx'
+export * from './pages/CalendarPage'
+export * from './components/NavBar'
