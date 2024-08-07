@@ -37,7 +37,11 @@ export const CalendarModal = () => {
   const closeModal = () => {
     setIsOpenModal(false);
   };
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(formValues);
+    closeModal();
+  }
   return (
     <Modal
       isOpen={isOpenModal}
@@ -49,7 +53,7 @@ export const CalendarModal = () => {
     >
       <h1> Nuevo evento </h1>
       <hr />
-      <form className="container">
+      <form className="container"  onSubmit={handleSubmit}>
         <div className="form-group mb-2">
           <label>Fecha y hora inicio</label>
           <DatePicker
