@@ -1,4 +1,4 @@
-import { addHours } from "date-fns";
+import { addHours, differenceInSeconds } from "date-fns";
 import { useState } from "react";
 import DatePicker, {registerLocale} from "react-datepicker";
 import { es } from 'date-fns/locale/es';
@@ -39,7 +39,14 @@ export const CalendarModal = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+    const difference = differenceInSeconds(formValues.end, formValues.start)
+    if(isNaN (difference) || difference<=0){
+      console.log('La fecha y hora de fin debe ser posterior a la de inicio')
+      return;
+    }
+    if(formValues.title.length <= 0)return;
     console.log(formValues);
+    
     closeModal();
   }
   return (
