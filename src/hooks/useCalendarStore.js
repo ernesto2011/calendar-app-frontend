@@ -1,11 +1,18 @@
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { setActiveEvent } from "../store";
 
 export const useCalendarStore = () => {
     const dispatch = useDispatch();
-    const {events} = useSelector(state => state.calendar);
-
+    const {events, activeEvent} = useSelector(state => state.calendar);
+    const setActiveCalendarEvent = (calendarEvent) => {
+        dispatch(setActiveEvent(calendarEvent));
+    }
   return{
-    events
+    //Propiedades
+    events, 
+    activeEvent,
+    //Métodos
+    setActiveCalendarEvent
   }
 }
