@@ -20,7 +20,7 @@ const events = [{
   }, {
 }]
 export const CalendarPage = () => {
-  const { openModal } = useUiStore();
+  const { openDateModal } = useUiStore();
   const [lastView, setLastView]= useState(localStorage.getItem('lastView') || 'week')
   const eventStyleGetter = (event, start, end, isSelected) => {
     const style={
@@ -34,11 +34,9 @@ export const CalendarPage = () => {
     }
   }
   const onDoubleClick = (event) =>{
-    console.log('double click');
-    openModal();
+    openDateModal();
   }
   const onSelect = (event) =>{
-
   }
   const onViewChanged = (event) =>{
     localStorage.setItem('lastView', event)
@@ -60,7 +58,7 @@ export const CalendarPage = () => {
         components={{
           event: CalendarEvent
         }}
-        onDoubleClick={onDoubleClick}
+        onDoubleClickEvent={onDoubleClick}
         onSelectEvent={onSelect}
         onView={onViewChanged}
       />
