@@ -4,6 +4,7 @@ import { CalendarEvent, CalendarModal, NavBar, BtnAddNew } from "../";
 import { localizer, getMessagesES } from "../../helpers";
 import { useState } from "react";
 import { useUiStore, useCalendarStore } from "../../hooks";
+import { BtnDelEvent } from "../components/BtnDelEvent";
 
 
 
@@ -56,6 +57,7 @@ export const CalendarPage = () => {
       />
       <CalendarModal />
       <BtnAddNew />
+      <BtnDelEvent />
     </>
   );
 };
