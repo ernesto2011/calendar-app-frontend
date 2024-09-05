@@ -16,16 +16,17 @@ export const useCalendarStore = () => {
         dispatch(onAddNewEvent({...calendarEvent,_id: new Date().getTime()}))
       }
     }
-    const deleteEvent =()=>{
+    const startDeletetingEvent =()=>{
       dispatch(onDeletEvent())
     }
   return{
     //Propiedades
     events, 
     activeEvent,
+    haSEventSelected: !!activeEvent,
     //Métodos
     setActiveCalendarEvent,
     startSavingEvent,
-    deleteEvent,
+    startDeletetingEvent,
   }
 }
