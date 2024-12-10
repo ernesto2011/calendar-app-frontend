@@ -1,4 +1,14 @@
 import './LoginPage.css'
+const loginFormFields= {
+  loginEmail: '',
+  loginPassword: '',
+}
+const registerFormFields= {
+  registerName: '',
+  registerEmail: '',
+  registerPassword: '',
+  registerPassword2: '',
+}
 
 export const LoginPage = () => {
   return (
