@@ -1,5 +1,8 @@
-import { useForm } from '../../hooks';
+import { use } from 'react';
+import { useAuthStore, useForm } from '../../hooks';
 import './LoginPage.css'
+import { useEffect } from 'react';
+import Swal from 'sweetalert2';
 const loginFormFields= {
   loginEmail: '',
   loginPassword: '',
@@ -12,16 +15,27 @@ const registerFormFields= {
 }
 
 export const LoginPage = () => {
+  const {startLogin, startRegister, errorMessage} = useAuthStore();
   const  {loginEmail, loginPassword, onInputChange:onLoginInputChange} = useForm(loginFormFields)
   const {registerName, registerEmail, registerPassword, registerPassword2, onInputChange:onRegisterInputChange} = useForm(registerFormFields)
   const loginSubmit = (event) => {
     event.preventDefault();
-    console.log({loginEmail, loginPassword})
+    startLogin({email:loginEmail, password:loginPassword})
+
   }
   const registerSubmit = (event) => {
     event.preventDefault();
-    console.log({registerName, registerEmail, registerPassword, registerPassword2})
+    if(registerPassword !== registerPassword2){
+      Swal.fire('Error en registro', 'Las contraseñas no coinciden', 'error')
+      return;
+    }
+    startRegister({name:registerName, email:registerEmail, password:registerPassword, })
   }
+  useEffect(()=>{
+    if(errorMessage !== undefined){
+      Swal.fire('Error en la autenticación', errorMessage, 'error')
+    }
+  },[errorMessage])
   return (
     <div className="container login-container">
       <div className="row">
